@@ -8,7 +8,8 @@ import {
   BsLinkedin,
 } from 'react-icons/bs';
 import logo from '../assets/arvin_logo.png';
-const FooterComp = () => {
+const fullYear = new Date().getFullYear;
+export default function FooterComp() {
   return (
     <Footer container className='border-t-2 border-gray-400 bg-gray-100'>
       <div className='w-full max-w-7xl mx-auto'>
@@ -82,7 +83,7 @@ const FooterComp = () => {
           <Footer.Copyright
             href='#'
             by='Arvin Alejandro Archives'
-            year={new Date().getFullYear}
+            year={fullYear}
           />
           <div className='flex gap-6 sm:mt-0 sm:justify-center mt-4'>
             <Footer.Icon href='#' icon={BsFacebook} />
@@ -95,6 +96,4 @@ const FooterComp = () => {
       </div>
     </Footer>
   );
-};
-
-export default FooterComp;
+}
