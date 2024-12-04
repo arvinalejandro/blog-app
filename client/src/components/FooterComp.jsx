@@ -5,7 +5,7 @@ import {
   BsInstagram,
   BsTwitterX,
   BsGithub,
-  BsDribbble,
+  BsLinkedin,
 } from 'react-icons/bs';
 import logo from '../assets/arvin_logo.png';
 const FooterComp = () => {
@@ -89,7 +89,7 @@ const FooterComp = () => {
             <Footer.Icon href='#' icon={BsInstagram} />
             <Footer.Icon href='#' icon={BsTwitterX} />
             <Footer.Icon href='#' icon={BsGithub} />
-            <Footer.Icon href='#' icon={BsDribbble} />
+            <Footer.Icon href='#' icon={BsLinkedin} />
           </div>
         </div>
       </div>
