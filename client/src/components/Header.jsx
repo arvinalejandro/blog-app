@@ -9,13 +9,9 @@ export default function Header() {
   const activeNav = 'text-gray-800 hover:text-gray-800';
   const inActiveNav = 'text-gray-500 hover:text-gray-800';
   return (
-    <Navbar className='border-b-2 border-gray-400 bg-gray-300 fixed w-full top-0 left-0 z-50'>
+    <Navbar className='border-b-2 border-gray-400 rounded bg-gray-300 fixed w-full top-0 left-0 z-50'>
       <Navbar.Brand as={Link} href='/'>
-        <img
-          src={logo}
-          className='mr-3 h-6 w-9 sm:h-9 rounded-lg'
-          alt='Arvin Logo'
-        />
+        <img src={logo} className='mr-3 h-9 w-9 rounded-lg' alt='Arvin Logo' />
         <span className='self-center whitespace-nowrap text-xl font-serif font-semibold dark:text-white'>
           Archives
         </span>
