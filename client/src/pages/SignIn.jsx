@@ -44,7 +44,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className='min-h-screen mt-20'>
+    <div className='min-h-screen mt-16 pt-2'>
       <div className='flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-32'>
         {/*Left*/}
         <div className='flex-1 self-start'>
@@ -83,9 +83,10 @@ const SignIn = () => {
               />
             </div>
             <Button
-              className='bg-gradient-to-r from-gray-800 to-gray-600'
+              className='bg-gradient-to-r from-gray-700 via-gray-500 to-gray-700'
               type='submit'
               disabled={loading}
+              outline
             >
               {loading ? (
                 <>

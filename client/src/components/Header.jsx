@@ -1,17 +1,20 @@
 import { Button, Navbar, TextInput, Dropdown, Avatar } from 'flowbite-react';
 import { Link, useLocation } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { CgDarkMode } from 'react-icons/cg';
+import { CgDarkMode, CgSun } from 'react-icons/cg';
 import logo from '../assets/arvin_logo.png';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleTheme } from '../redux/theme/themeSlice';
 
 export default function Header() {
   const path = useLocation().pathname;
+  const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
+  const { theme } = useSelector((state) => state.theme);
   const activeNav = 'text-gray-800 hover:text-gray-800';
   const inActiveNav = 'text-gray-500 hover:text-gray-800';
   return (
-    <Navbar className='border-b-2 border-gray-400 rounded bg-gray-300 fixed w-full top-0 left-0 z-50'>
+    <Navbar className='border-b-2 border-gray-400 rounded-t-none bg-gray-300 fixed w-full top-0 left-0 z-50'>
       <Navbar.Brand as={Link} href='/'>
         <img src={logo} className='mr-3 h-9 w-9 rounded-lg' alt='Arvin Logo' />
         <span className='self-center whitespace-nowrap text-xl font-serif font-semibold dark:text-white'>
@@ -34,8 +37,11 @@ export default function Header() {
           className='w-12 h-10 hidden sm:inline text-xl p-0'
           pill
           color='light'
+          onClick={() => {
+            dispatch(toggleTheme());
+          }}
         >
-          <CgDarkMode />
+          {theme === 'dark' ? <CgSun /> : <CgDarkMode />}
         </Button>
         {currentUser ? (
           <Dropdown
