@@ -1,11 +1,13 @@
-import { Button, Navbar, TextInput } from 'flowbite-react';
+import { Button, Navbar, TextInput, Dropdown, Avatar } from 'flowbite-react';
 import { Link, useLocation } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { CgDarkMode } from 'react-icons/cg';
 import logo from '../assets/arvin_logo.png';
+import { useSelector } from 'react-redux';
 
 export default function Header() {
   const path = useLocation().pathname;
+  const { currentUser } = useSelector((state) => state.user);
   const activeNav = 'text-gray-800 hover:text-gray-800';
   const inActiveNav = 'text-gray-500 hover:text-gray-800';
   return (
@@ -30,19 +32,41 @@ export default function Header() {
       <div className='flex gap-2 md:order-3'>
         <Button
           className='w-12 h-10 hidden sm:inline text-xl p-0'
-          color='gray'
           pill
+          color='light'
         >
           <CgDarkMode />
         </Button>
-        <Link to='/sign-in'>
-          <Button
-            className='bg-gradient-to-r from-gray-800 to-gray-600'
-            outline
+        {currentUser ? (
+          <Dropdown
+            arrowIcon={false}
+            inline
+            label={
+              <Avatar alt='user' img={currentUser.profilePicture} rounded />
+            }
           >
-            Sign In
-          </Button>
-        </Link>
+            <Dropdown.Header>
+              <span className='block text-sm'>@{currentUser.username}</span>
+              <span className='block text-sm font-medium truncate'>
+                {currentUser.email}
+              </span>
+            </Dropdown.Header>
+            <Link to={'/dashboard/?tab=profile'}>
+              <Dropdown.Item>Profile</Dropdown.Item>
+            </Link>
+            <Dropdown.Divider />
+            <Dropdown.Item>Sign out</Dropdown.Item>
+          </Dropdown>
+        ) : (
+          <Link to='/sign-in'>
+            <Button
+              className='bg-gradient-to-r from-gray-800 to-gray-600'
+              outline
+            >
+              Sign In
+            </Button>
+          </Link>
+        )}
       </div>
       <Navbar.Toggle />
       <Navbar.Collapse className='lg:order-1'>
