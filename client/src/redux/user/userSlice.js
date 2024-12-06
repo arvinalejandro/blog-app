@@ -36,7 +36,7 @@ const userSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-    refresh: (state, action) => {
+    refresh: (state) => {
       state.loading = false;
       state.error = null;
     },
