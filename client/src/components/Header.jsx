@@ -15,7 +15,7 @@ export default function Header() {
   const inActiveNav = 'text-gray-500 hover:text-gray-800';
   return (
     <Navbar className='border-b-2 border-gray-400 rounded-t-none bg-gray-300 fixed w-full top-0 left-0 z-50'>
-      <Navbar.Brand as={Link} href='/'>
+      <Navbar.Brand as={Link} to='/'>
         <img src={logo} className='mr-3 h-9 w-9 rounded-lg' alt='Arvin Logo' />
         <span className='self-center whitespace-nowrap text-xl font-serif font-semibold dark:text-white'>
           Archives
