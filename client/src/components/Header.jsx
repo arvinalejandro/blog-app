@@ -34,7 +34,7 @@ export default function Header() {
       </Button>
       <div className='flex gap-2 md:order-3'>
         <Button
-          className='w-12 h-10 hidden sm:inline text-xl p-0'
+          className='w-12 h-10 hidden sm:inline text-xl p-0 focus:ring-gray-300'
           pill
           color='light'
           onClick={() => {

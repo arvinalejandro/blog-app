@@ -151,6 +151,7 @@ export default function DashProfile() {
             <CircularProgressbar
               value={imageFileUploadProgress || 0}
               text={`${imageFileUploadProgress}%`}
+              strokeWidth={5}
               styles={{
                 root: {
                   width: '100%',
