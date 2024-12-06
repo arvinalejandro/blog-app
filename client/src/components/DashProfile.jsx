@@ -62,6 +62,7 @@ export default function DashProfile() {
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         setImageFileUploadProgress(progress.toFixed(0));
       },
+      // eslint-disable-next-line no-unused-vars
       (error) => {
         setImageFileUploadError(
           'Could not upload image(File must be less than 2MB)'
@@ -83,7 +84,7 @@ export default function DashProfile() {
       <form className='flex flex-col gap-4'>
         <input
           type='file'
-          accept='image/*'
+          accept='image/png, image/jpeg, image/gif'
           onChange={handleImageChange}
           ref={filePickerRef}
           hidden
