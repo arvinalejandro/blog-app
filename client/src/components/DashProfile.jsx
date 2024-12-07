@@ -1,4 +1,5 @@
 import { Alert, Button, Modal, TextInput } from 'flowbite-react';
+import { Link } from 'react-router-dom';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -24,9 +25,11 @@ import {
 import { useDispatch } from 'react-redux';
 
 export default function DashProfile() {
-  const { currentUser, error: errorMessage } = useSelector(
-    (state) => state.user
-  );
+  const {
+    currentUser,
+    error: errorMessage,
+    loading,
+  } = useSelector((state) => state.user);
   const [imageFile, setImageFile] = useState(null);
   const [imageFileUrl, setImageFileUrl] = useState(null);
   const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
@@ -177,7 +180,7 @@ export default function DashProfile() {
       <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
         <input
           type='file'
-          accept='image/png, image/jpeg, image/gif'
+          accept='image/*'
           onChange={handleImageChange}
           ref={filePickerRef}
           hidden
@@ -245,10 +248,21 @@ export default function DashProfile() {
           className='bg-gradient-to-r from-gray-700 via-gray-500 to-gray-700'
           type='submit'
           outline
-          disabled={imageFileUploading}
+          isProcessing={loading}
+          disabled={imageFileUploading || loading}
         >
           Update
         </Button>
+        {currentUser.isAdmin && (
+          <Link to={'/create-post'}>
+            <Button
+              type='button'
+              className='w-full bg-gradient-to-r from-gray-700 via-gray-500 to-gray-700'
+            >
+              Create Post
+            </Button>
+          </Link>
+        )}
       </form>
       <div className='text-red-500 flex justify-between mt-5'>
         <span
