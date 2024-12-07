@@ -5,14 +5,32 @@ import { CgDarkMode, CgSun } from 'react-icons/cg';
 import logo from '../assets/arvin_logo.png';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleTheme } from '../redux/theme/themeSlice';
+import { signOutSuccess } from '../redux/user/userSlice';
 
 export default function Header() {
   const path = useLocation().pathname;
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
   const { theme } = useSelector((state) => state.theme);
-  const activeNav = 'text-gray-800 hover:text-gray-800';
-  const inActiveNav = 'text-gray-500 hover:text-gray-800';
+  const activeNav = 'text-gray-800 dark:text-gray-600';
+  const inActiveNav =
+    'text-gray-400 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-600';
+
+  const handleSignOut = async () => {
+    try {
+      const res = await fetch('/api/user/signout', {
+        method: 'POST',
+      });
+      if (!res.ok) {
+        console.log('Cannot sign out.');
+      } else {
+        dispatch(signOutSuccess());
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Navbar className='border-b-2 border-gray-400 rounded-t-none bg-gray-300 fixed w-full top-0 left-0 z-50'>
       <Navbar.Brand as={Link} to='/'>
@@ -61,7 +79,7 @@ export default function Header() {
               <Dropdown.Item>Profile</Dropdown.Item>
             </Link>
             <Dropdown.Divider />
-            <Dropdown.Item>Sign out</Dropdown.Item>
+            <Dropdown.Item onClick={handleSignOut}>Sign out</Dropdown.Item>
           </Dropdown>
         ) : (
           <Link to='/sign-in'>
