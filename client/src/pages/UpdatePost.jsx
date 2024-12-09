@@ -13,7 +13,7 @@ import {
   getDownloadURL,
 } from 'firebase/storage';
 
-export default function CreatePost() {
+export default function UpdatePost() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);

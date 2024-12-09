@@ -1,5 +1,6 @@
 import { Footer } from 'flowbite-react';
 import { Link } from 'react-router-dom';
+import logo from '../assets/arvin_logo.png';
 import {
   BsFacebook,
   BsInstagram,
@@ -7,7 +8,7 @@ import {
   BsGithub,
   BsLinkedin,
 } from 'react-icons/bs';
-import logo from '../assets/arvin_logo.png';
+
 const fullYear = new Date().getFullYear;
 export default function FooterComp() {
   return (

@@ -6,9 +6,9 @@ import { DeleteModal } from './DeleteModal';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { CircularProgressbar } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
 import { app } from '../firebase';
 import { useDispatch } from 'react-redux';
+import 'react-circular-progressbar/dist/styles.css';
 import {
   getStorage,
   uploadBytesResumable,

@@ -2,10 +2,10 @@ import { Button, Navbar, TextInput, Dropdown, Avatar } from 'flowbite-react';
 import { Link, useLocation } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { CgDarkMode, CgSun } from 'react-icons/cg';
-import logo from '../assets/arvin_logo.png';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleTheme } from '../redux/theme/themeSlice';
 import { signOutSuccess } from '../redux/user/userSlice';
+import logo from '../assets/arvin_logo.png';
 
 export default function Header() {
   const path = useLocation().pathname;
