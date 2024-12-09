@@ -32,7 +32,7 @@ export default function Header() {
   };
 
   return (
-    <Navbar className='border-b-2 border-gray-400 rounded-t-none bg-gray-300 fixed w-full top-0 left-0 z-50'>
+    <Navbar className='border-b-[1px] border-gray-300 rounded-t-none bg-gray-100 dark:border-gray-700 fixed w-full top-0 left-0 z-50'>
       <Navbar.Brand as={Link} to='/'>
         <img src={logo} className='mr-3 h-9 w-9 rounded-lg' alt='Arvin Logo' />
         <span className='self-center whitespace-nowrap text-xl font-serif font-semibold dark:text-white'>

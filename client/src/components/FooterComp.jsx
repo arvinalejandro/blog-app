@@ -12,7 +12,10 @@ import {
 const fullYear = new Date().getFullYear;
 export default function FooterComp() {
   return (
-    <Footer container className='border-t-2 border-gray-400 bg-gray-100'>
+    <Footer
+      container
+      className='border-t-[1px] border-gray-300 bg-gray-100 dark:border-gray-700'
+    >
       <div className='w-full max-w-7xl mx-auto'>
         <div className='grid w-full justify-between sm:flex md:grid-cols-1'>
           <div className='my-1'>

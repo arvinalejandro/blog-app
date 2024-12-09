@@ -75,14 +75,12 @@ export default function DashPost() {
         <>
           <Table className='shadow-md' hoverable>
             <Table.Head>
-              <Table.HeadCell className='bg-gray-100'>
-                Date Updated
-              </Table.HeadCell>
-              <Table.HeadCell className='bg-gray-150'>Image</Table.HeadCell>
-              <Table.HeadCell className='bg-gray-150'>Title</Table.HeadCell>
-              <Table.HeadCell className='bg-gray-150'>Category</Table.HeadCell>
-              <Table.HeadCell className='bg-gray-150'>Delete</Table.HeadCell>
-              <Table.HeadCell className='bg-gray-150'>
+              <Table.HeadCell>Date Updated</Table.HeadCell>
+              <Table.HeadCell>Image</Table.HeadCell>
+              <Table.HeadCell>Title</Table.HeadCell>
+              <Table.HeadCell>Category</Table.HeadCell>
+              <Table.HeadCell>Delete</Table.HeadCell>
+              <Table.HeadCell>
                 <span>Edit</span>
               </Table.HeadCell>
             </Table.Head>
