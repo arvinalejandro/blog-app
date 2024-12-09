@@ -1,5 +1,13 @@
-import { Alert, Button, Modal, TextInput } from 'flowbite-react';
+import {
+  Alert,
+  Button,
+  Modal,
+  TextInput,
+  Popover,
+  Label,
+} from 'flowbite-react';
 import { Link } from 'react-router-dom';
+import { PassPop } from './PassPop';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -129,6 +137,7 @@ export default function DashProfile() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
+    //console.log(formData);
   };
 
   const handleSubmit = async (e) => {
@@ -222,12 +231,7 @@ export default function DashProfile() {
           defaultValue={currentUser.email}
           onChange={handleChange}
         />
-        <TextInput
-          type='password'
-          id='password'
-          placeholder='password'
-          onChange={handleChange}
-        />
+        <PassPop handleChange={handleChange} />
         <Button
           className='bg-gradient-to-r from-gray-700 via-gray-500 to-gray-700'
           type='submit'

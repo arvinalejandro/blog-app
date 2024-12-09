@@ -108,6 +108,7 @@ export default function CreatePost() {
             typp='file'
             accept='image/*'
             onChange={(e) => setFile(e.target.files[0])}
+            sizing='sm'
           />
           <Button
             type='button'

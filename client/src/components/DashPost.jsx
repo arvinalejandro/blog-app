@@ -27,7 +27,7 @@ export default function DashPost() {
     <div className='table-auto overflow-x-auto md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500'>
       {currentUser.isAdmin && userPosts.length > 0 ? (
         <>
-          <Table hoverable className='shadow-md'>
+          <Table className='shadow-md' hoverable>
             <Table.Head>
               <Table.HeadCell>Date Updated</Table.HeadCell>
               <Table.HeadCell>Image</Table.HeadCell>
@@ -38,9 +38,12 @@ export default function DashPost() {
                 <span>Edit</span>
               </Table.HeadCell>
             </Table.Head>
-            {userPosts.map((post) => (
-              <Table.Body key={post.slug} className='divide-y'>
-                <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800'>
+            <Table.Body className='divide-y'>
+              {userPosts.map((post) => (
+                <Table.Row
+                  key={post.slug}
+                  className='bg-white dark:border-gray-700 dark:bg-gray-800'
+                >
                   <Table.Cell>
                     {new Date(post.updatedAt).toLocaleDateString()}
                   </Table.Cell>
@@ -56,7 +59,7 @@ export default function DashPost() {
                   <Table.Cell className='font-medium text-gray-900 dark:text-gray-200'>
                     <Link to={`/post/${post.slug}`}>{post.title}</Link>
                   </Table.Cell>
-                  <Table.Cell>{post.category}</Table.Cell>
+                  <Table.Cell>{post.category.toUpperCase()}</Table.Cell>
                   <Table.Cell>
                     <span className='font-medium text-red-500 hover:underline cursor-pointer'>
                       Delete
@@ -71,8 +74,8 @@ export default function DashPost() {
                     </Link>
                   </Table.Cell>
                 </Table.Row>
-              </Table.Body>
-            ))}
+              ))}
+            </Table.Body>
           </Table>
         </>
       ) : (
