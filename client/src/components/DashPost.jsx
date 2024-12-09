@@ -7,15 +7,19 @@ import { useSelector } from 'react-redux';
 export default function DashPost() {
   const { currentUser } = useSelector((state) => state.user);
   const [userPosts, setUserPosts] = useState([]);
+  const [showMore, setShowMore] = useState(true);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const res = await fetch(`/api/post/getposts?userId=${currentUser._id}`);
         const data = await res.json();
-        console.log(data);
+
         if (res.ok) {
           setUserPosts(data.posts);
+          if (data.posts.length < 9) {
+            setShowMore(false);
+          }
         }
       } catch (error) {
         console.log(error);
@@ -23,6 +27,23 @@ export default function DashPost() {
     };
     if (currentUser.isAdmin) fetchPosts();
   }, [currentUser._id]);
+
+  const handleShowMore = async () => {
+    const startIndex = userPosts.length;
+
+    try {
+      const res = await fetch(
+        `/api/post/getposts?userId=${currentUser._id}&startIndex=${startIndex}`
+      );
+      const data = await res.json();
+      if (res.ok) {
+        setUserPosts((prev) => [...prev, ...data.posts]);
+        if (data.posts.length < 9) setShowMore(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className='table-auto overflow-x-auto md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500'>
       {currentUser.isAdmin && userPosts.length > 0 ? (
@@ -77,6 +98,15 @@ export default function DashPost() {
               ))}
             </Table.Body>
           </Table>
+          {showMore && (
+            <Button
+              onClick={handleShowMore}
+              color='light'
+              className='w-60 focus:ring-gray-300 text-gray-300 self-center mx-auto my-5 text-sm py-1 bg-gradient-to-r from-gray-700 via-gray-500 to-gray-700'
+            >
+              Show More
+            </Button>
+          )}
         </>
       ) : (
         <p>No posts to display</p>
