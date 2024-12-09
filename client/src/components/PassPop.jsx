@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import { TextInput, Popover } from 'flowbite-react';
 
-export const PassPop = (props) => {
+export const PassPop = ({ onChange }) => {
   return (
     <Popover
       trigger='hover'
@@ -80,8 +81,7 @@ export const PassPop = (props) => {
         type='password'
         placeholder='password'
         required
-        // eslint-disable-next-line react/prop-types
-        onChange={props.handleChange}
+        onChange={onChange}
       />
     </Popover>
   );

@@ -1,13 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Alert, Button, Modal, TextInput } from 'flowbite-react';
+import { Alert, Button, TextInput } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 import { PassPop } from './PassPop';
-import { HiOutlineExclamationCircle } from 'react-icons/hi';
+import { DeleteModal } from './DeleteModal';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { app } from '../firebase';
+import { useDispatch } from 'react-redux';
 import {
   getStorage,
   uploadBytesResumable,
@@ -23,7 +24,6 @@ import {
   deleteUserStart,
   deleteUserSuccess,
 } from '../redux/user/userSlice';
-import { useDispatch } from 'react-redux';
 
 export default function DashProfile() {
   const {
@@ -131,7 +131,7 @@ export default function DashProfile() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
-    //console.log(formData);
+    console.log(formData);
   };
 
   const handleSubmit = async (e) => {
@@ -225,7 +225,7 @@ export default function DashProfile() {
           defaultValue={currentUser.email}
           onChange={handleChange}
         />
-        <PassPop handleChange={handleChange} />
+        <PassPop onChange={handleChange} />
         <Button
           className='bg-gradient-to-r from-gray-700 via-gray-500 to-gray-700'
           type='submit'
@@ -267,30 +267,12 @@ export default function DashProfile() {
           {errorMessage}
         </Alert>
       )}
-      <Modal
-        show={showModal}
-        onClose={() => setShowModal(false)}
-        popup
-        size='md'
-      >
-        <Modal.Header />
-        <Modal.Body>
-          <div className='text-center'>
-            <HiOutlineExclamationCircle className='mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200' />
-            <h3 className='mb-5 text-lg font-normal text-gray-500 dark:text-gray-400'>
-              Are you sure you want to delete your account?
-            </h3>
-            <div className='flex justify-center gap-4'>
-              <Button color='failure' onClick={handleDeleteUser}>
-                {"Yes, I'm sure"}
-              </Button>
-              <Button color='gray' onClick={() => setShowModal(false)}>
-                No, cancel
-              </Button>
-            </div>
-          </div>
-        </Modal.Body>
-      </Modal>
+      <DeleteModal
+        showModal={showModal}
+        modalMessage='Are you sure you want to delete your account?'
+        modalFalse={() => setShowModal(false)}
+        onClickYes={handleDeleteUser}
+      />
     </div>
   );
 }

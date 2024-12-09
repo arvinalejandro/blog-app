@@ -1,13 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Modal, Table, Button } from 'flowbite-react';
+import { Table, Button } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { DeleteModal } from './DeleteModal';
 
 export default function DashPost() {
   const { currentUser } = useSelector((state) => state.user);
   const [userPosts, setUserPosts] = useState([]);
   const [showMore, setShowMore] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [postIdToDelete, setPostIdToDelete] = useState('');
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -27,6 +30,28 @@ export default function DashPost() {
     };
     if (currentUser.isAdmin) fetchPosts();
   }, [currentUser._id]);
+
+  const handleDeletePost = async () => {
+    setShowModal(false);
+    try {
+      const res = await fetch(
+        `/api/post/deletepost/${postIdToDelete}/${currentUser._id}`,
+        {
+          method: 'DELETE',
+        }
+      );
+      const data = await res.json();
+      if (!res.ok) {
+        console.log(data.message);
+      } else {
+        setUserPosts((prev) =>
+          prev.filter((post) => post._id !== postIdToDelete)
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleShowMore = async () => {
     const startIndex = userPosts.length;
@@ -82,7 +107,13 @@ export default function DashPost() {
                   </Table.Cell>
                   <Table.Cell>{post.category.toUpperCase()}</Table.Cell>
                   <Table.Cell>
-                    <span className='font-medium text-red-500 hover:underline cursor-pointer'>
+                    <span
+                      onClick={() => {
+                        setShowModal(true);
+                        setPostIdToDelete(post._id);
+                      }}
+                      className='font-medium text-red-500 hover:underline cursor-pointer'
+                    >
                       Delete
                     </span>
                   </Table.Cell>
@@ -111,6 +142,12 @@ export default function DashPost() {
       ) : (
         <p>No posts to display</p>
       )}
+      <DeleteModal
+        modalMessage='Are you sure you want to this post?'
+        showModal={showModal}
+        modalFalse={() => setShowModal(false)}
+        onClickYes={handleDeletePost}
+      />
     </div>
   );
 }
