@@ -2,7 +2,7 @@ import { Button, FileInput, Select, TextInput, Alert } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { app } from '../firebase';
 import { CircularProgressbar } from 'react-circular-progressbar';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import 'react-circular-progressbar/dist/styles.css';
@@ -179,10 +179,18 @@ export default function UpdatePost() {
         />
         <Button
           type='submit'
-          className='w-full bg-gradient-to-r from-gray-700 via-gray-500 to-gray-700'
+          className='w-2/3 mx-auto bg-gradient-to-r from-gray-700 via-gray-500 to-gray-700'
         >
           Publish
         </Button>
+        <Link to='/dashboard?tab=posts'>
+          <Button
+            type='button'
+            className='w-2/3 mx-auto bg-gradient-to-r from-gray-700 via-gray-500 to-gray-700'
+          >
+            Cancel
+          </Button>
+        </Link>
       </form>
     </div>
   );

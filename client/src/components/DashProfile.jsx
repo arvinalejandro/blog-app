@@ -227,7 +227,7 @@ export default function DashProfile() {
         />
         <PassPop onChange={handleChange} />
         <Button
-          className='bg-gradient-to-r from-gray-700 via-gray-500 to-gray-700'
+          className='w-2/3 mx-auto bg-gradient-to-r from-gray-700 via-gray-500 to-gray-700'
           type='submit'
           outline
           isProcessing={loading}
@@ -239,16 +239,16 @@ export default function DashProfile() {
           <Link to={'/create-post'}>
             <Button
               type='button'
-              className='w-full bg-gradient-to-r from-gray-700 via-gray-500 to-gray-700'
+              className='w-2/3 mx-auto bg-gradient-to-r from-gray-700 via-gray-500 to-gray-700'
             >
               Create Post
             </Button>
           </Link>
         )}
       </form>
-      <div className='text-red-500 flex flex-row-reverse justify-between mt-5'>
+      <div className='text-red-500 flex flex-row-reverse justify-between mt-5 '>
         <span
-          className='cursor-pointer text-xs font-semibold font-sans'
+          className='cursor-pointer text-xs font-semibold font-sans mx-auto'
           onClick={() => {
             setShowModal(true);
           }}

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { DeleteModal } from './DeleteModal';
+import { BiEditAlt } from 'react-icons/bi';
+import { RiDeleteBinLine } from 'react-icons/ri';
 
 export default function DashPost() {
   const { currentUser } = useSelector((state) => state.user);
@@ -11,6 +13,10 @@ export default function DashPost() {
   const [showMore, setShowMore] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [postIdToDelete, setPostIdToDelete] = useState('');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -81,8 +87,10 @@ export default function DashPost() {
               <Table.HeadCell className='bg-gray-150'>Image</Table.HeadCell>
               <Table.HeadCell className='bg-gray-150'>Title</Table.HeadCell>
               <Table.HeadCell className='bg-gray-150'>Category</Table.HeadCell>
-              <Table.HeadCell className='bg-gray-150'>Delete</Table.HeadCell>
-              <Table.HeadCell className='bg-gray-150'>
+              <Table.HeadCell className='bg-gray-150 self-center'>
+                Delete
+              </Table.HeadCell>
+              <Table.HeadCell className='bg-gray-150 self-center'>
                 <span>Edit</span>
               </Table.HeadCell>
             </Table.Head>
@@ -108,23 +116,33 @@ export default function DashPost() {
                     <Link to={`/post/${post.slug}`}>{post.title}</Link>
                   </Table.Cell>
                   <Table.Cell>{post.category.toUpperCase()}</Table.Cell>
-                  <Table.Cell>
-                    <span
+                  <Table.Cell className='self-center'>
+                    <Button
+                      type='button'
+                      size='xs'
+                      className='w-1/2 bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700'
                       onClick={() => {
                         setShowModal(true);
                         setPostIdToDelete(post._id);
                       }}
-                      className='font-medium text-red-500 hover:underline cursor-pointer'
                     >
+                      <RiDeleteBinLine className='mr-1 h-4 w-4' />
                       Delete
-                    </span>
+                    </Button>
                   </Table.Cell>
-                  <Table.Cell>
+                  <Table.Cell className='self-center'>
                     <Link
-                      className='text-teal-500 hover:underline'
+                      className='text-teal-500'
                       to={`/update-post/${post._id}`}
                     >
-                      <span>Edit</span>
+                      <Button
+                        type='button'
+                        size='xs'
+                        className='w-1/2 bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700'
+                      >
+                        <BiEditAlt className='mr-1 h-4 w-4' />
+                        Edit
+                      </Button>
                     </Link>
                   </Table.Cell>
                 </Table.Row>
