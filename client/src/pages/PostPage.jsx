@@ -1,6 +1,7 @@
 import { Spinner, Button } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { HiOutlineArrowLeft } from 'react-icons/hi';
 import CallToAction from '../components/CallToAction';
 
 export default function PostPage() {
@@ -41,42 +42,54 @@ export default function PostPage() {
       </div>
     );
   return (
-    <div className='p-3 max-w-3xl mx-auto min-h-screen mt-14'>
-      <main className='p-3 flex flex-col max-w-6xl mx-auto min-h-screen'>
-        <h1 className='text-3xl mt-10 p-3 text-center font-serif max-w-2xl mx-auto lg:text-4xl'>
-          {post && post.title}
-        </h1>
-        <Link
-          to={`/search?category=${post && post.category}`}
-          className='self-center mt-5'
+    <div className='p-3 max-w-full min-h-screen mt-14'>
+      <Link to='/dashboard?tab=posts'>
+        <Button
+          type='button'
+          color='light'
+          pill
+          className='ml-0 dark:bg-gray-900'
         >
-          <Button color='gray' pill size='xs'>
-            {post && post.category}
-          </Button>
-        </Link>
-        <img
-          src={post && post.image}
-          alt={post && post.title}
-          className='mt-10 p-3 max-h-[600px] w-full object-cover'
-        />
-        <div className='flex justify-between p-3 border-b border-slate-500 mx-auto w-full max-w-2xl text-xs'>
-          <span>{post && new Date(post.createdAt).toLocaleDateString()}</span>
-          <span className='italic'>
-            {post && (post.content.length / 1000).toFixed(0)} min/s read
-          </span>
-        </div>
+          <HiOutlineArrowLeft className='h-6 w-6' />
+        </Button>
+      </Link>
+      <div className='p-3 max-w-3xl mx-auto mt-1'>
+        <main className='p-3 flex flex-col max-w-6xl mx-auto min-h-screen'>
+          <h1 className='text-3xl mt-10 p-3 text-center font-serif max-w-2xl mx-auto lg:text-4xl'>
+            {post && post.title}
+          </h1>
+          <Link
+            to={`/search?category=${post && post.category}`}
+            className='self-center mt-5'
+          >
+            <Button color='gray' pill size='xs'>
+              {post && post.category}
+            </Button>
+          </Link>
+          <img
+            src={post && post.image}
+            alt={post && post.title}
+            className='mt-10 p-3 max-h-[600px] w-full object-cover'
+          />
+          <div className='flex justify-between p-3 border-b border-slate-500 mx-auto w-full max-w-2xl text-xs'>
+            <span>{post && new Date(post.createdAt).toLocaleDateString()}</span>
+            <span className='italic'>
+              {post && (post.content.length / 1000).toFixed(0)} min/s read
+            </span>
+          </div>
 
-        <div
-          className='p-3 max-w-2xl mx-auto w-full post-content'
-          dangerouslySetInnerHTML={{
-            __html: post && post.content.replace(/<\/?span[^>]*>/g, ''),
-          }}
-        ></div>
+          <div
+            className='p-3 max-w-2xl mx-auto w-full post-content'
+            dangerouslySetInnerHTML={{
+              __html: post && post.content.replace(/<\/?span[^>]*>/g, ''),
+            }}
+          ></div>
 
-        <div className='max-w-4xl mx-auto w-full'>
-          <CallToAction />
-        </div>
-      </main>
+          <div className='max-w-4xl mx-auto w-full'>
+            <CallToAction />
+          </div>
+        </main>
+      </div>
     </div>
   );
 }
