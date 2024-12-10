@@ -14,10 +14,10 @@ export default function FooterComp() {
   return (
     <Footer
       container
-      className='border-t-[1px] border-gray-300 bg-gray-100 dark:border-gray-700'
+      className='border-t-[1px] border-gray-300 bg-gray-100 dark:border-gray-700 px-6 py-3'
     >
-      <div className='w-full max-w-7xl mx-auto'>
-        <div className='grid w-full justify-between sm:flex md:grid-cols-1'>
+      <div className='w-full text-center'>
+        <div className='w-full justify-between sm:flex sm:items-center sm:justify-between px-10'>
           <div className='my-1'>
             <Link
               to='/'
@@ -25,7 +25,7 @@ export default function FooterComp() {
             >
               <img
                 src={logo}
-                className='mr-3 h-9 w-9  rounded-lg'
+                className='mr-4 h-9 w-9  rounded-lg'
                 alt='Arvin Logo'
               />
               <span className='self-center whitespace-nowrap text-xl font-serif font-semibold dark:text-white'>
@@ -33,69 +33,26 @@ export default function FooterComp() {
               </span>
             </Link>
           </div>
-          <div className='grid grid-cols-2 gap-8 mt-4 sm:grid-cols-3 sm:gap-6'>
-            <div>
-              <Footer.Title title='About' />
-              <Footer.LinkGroup col>
-                <Footer.Link
-                  href='/about'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  AA Archives
-                </Footer.Link>
-              </Footer.LinkGroup>
-            </div>
-
-            <div>
-              <Footer.Title title='Follow Us' />
-              <Footer.LinkGroup col>
-                <Footer.Link
-                  href='https://www.github.com/arvinalejandro'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  Github
-                </Footer.Link>
-
-                <Footer.Link
-                  href='https://www.gitlab.com/arvinalejandro'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  Gitlab
-                </Footer.Link>
-              </Footer.LinkGroup>
-            </div>
-
-            <div>
-              <Footer.Title title='Legal' />
-              <Footer.LinkGroup col>
-                <Footer.Link href='#' target='_blank' rel='noopener noreferrer'>
-                  Privacy Policy
-                </Footer.Link>
-
-                <Footer.Link href='#' target='_blank' rel='noopener noreferrer'>
-                  Terms & Conditions
-                </Footer.Link>
-              </Footer.LinkGroup>
-            </div>
-          </div>
+          <Footer.LinkGroup className='dark:text-gray-400'>
+            <Footer.Link href='#'>About</Footer.Link>
+            <Footer.Link href='#'>Privacy Policy</Footer.Link>
+            <Footer.Link href='#'>Licensing</Footer.Link>
+            <Footer.Link href='#'>Contact</Footer.Link>
+          </Footer.LinkGroup>
         </div>
         <Footer.Divider />
-        <div className='w-full sm:flex sm:items-center sm:justify-between'>
+
+        <div className='mt-4 flex space-x-4 sm:mt-0 sm:justify-center'>
           <Footer.Copyright
             href='#'
             by='Arvin Alejandro Archives'
             year={fullYear}
           />
-          <div className='flex gap-6 sm:mt-0 sm:justify-center mt-4'>
-            <Footer.Icon href='#' icon={BsFacebook} />
-            <Footer.Icon href='#' icon={BsInstagram} />
-            <Footer.Icon href='#' icon={BsTwitterX} />
-            <Footer.Icon href='#' icon={BsGithub} />
-            <Footer.Icon href='#' icon={BsLinkedin} />
-          </div>
+          <Footer.Icon href='#' icon={BsFacebook} />
+          <Footer.Icon href='#' icon={BsInstagram} />
+          <Footer.Icon href='#' icon={BsTwitterX} />
+          <Footer.Icon href='#' icon={BsGithub} />
+          <Footer.Icon href='#' icon={BsLinkedin} />
         </div>
       </div>
     </Footer>

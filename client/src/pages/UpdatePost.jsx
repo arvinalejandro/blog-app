@@ -170,8 +170,8 @@ export default function UpdatePost() {
         <ReactQuill
           theme='snow'
           placeholder='Write something...'
-          className='h-72 mb-12'
-          value={formData.content}
+          className='h-72 mb-12 text-gray-700 dark:text-gray-100'
+          value={formData.content.replace(/<\/?span[^>]*>/g, '')}
           required
           onChange={(value) => {
             setFormData({ ...formData, content: value });

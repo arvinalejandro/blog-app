@@ -1,6 +1,7 @@
 import { Spinner, Button } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import CallToAction from '../components/CallToAction';
 
 export default function PostPage() {
   const { postSlug } = useParams();
@@ -27,12 +28,12 @@ export default function PostPage() {
       } catch (error) {
         setError(true);
         setLoading(false);
+        console.log(error);
       }
     };
     fetchPost();
-    console.log(post);
   }, [postSlug]);
-
+  //console.log(post);
   if (loading)
     return (
       <div className='flex justify-center items-center min-h-screen'>
@@ -64,10 +65,17 @@ export default function PostPage() {
             {post && (post.content.length / 1000).toFixed(0)} min/s read
           </span>
         </div>
+
         <div
           className='p-3 max-w-2xl mx-auto w-full post-content'
-          dangerouslySetInnerHTML={{ __html: post && post.content }}
+          dangerouslySetInnerHTML={{
+            __html: post && post.content.replace(/<\/?span[^>]*>/g, ''),
+          }}
         ></div>
+
+        <div className='max-w-4xl mx-auto w-full'>
+          <CallToAction />
+        </div>
       </main>
     </div>
   );
