@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { HiOutlineArrowLeft } from 'react-icons/hi';
 import CallToAction from '../components/CallToAction';
+import CommentSection from '../components/CommentSection';
 
 export default function PostPage() {
   const { postSlug } = useParams();
@@ -19,6 +20,7 @@ export default function PostPage() {
         if (!res.ok) {
           setError(true);
           setLoading(false);
+          console.log(error);
           return;
         }
         if (res.ok) {
@@ -88,6 +90,7 @@ export default function PostPage() {
           <div className='max-w-4xl mx-auto w-full'>
             <CallToAction />
           </div>
+          <CommentSection postId={post._id} />
         </main>
       </div>
     </div>
