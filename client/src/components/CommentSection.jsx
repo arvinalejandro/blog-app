@@ -142,7 +142,7 @@ export default function CommentSection({ postId }) {
       {currentUser && (
         <form
           onSubmit={handleSubmit}
-          className='border border-teal-500 rounded-md p-3'
+          className='border border-gray-500 rounded-md p-3'
         >
           <Textarea
             placeholder='Add a comment...'
@@ -155,7 +155,7 @@ export default function CommentSection({ postId }) {
             <p className='text-gray-500 text-xs'>
               {200 - comment.length} characters remaining
             </p>
-            <Button outline gradientDuoTone='purpleToBlue' type='submit'>
+            <Button outline color='light' type='submit' className='bg-gray-400'>
               Submit
             </Button>
           </div>
