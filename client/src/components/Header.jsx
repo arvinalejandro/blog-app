@@ -50,7 +50,7 @@ export default function Header() {
   };
 
   return (
-    <Navbar className='border-b-[1px] border-gray-300 rounded-t-none bg-gray-500 dark:border-gray-700 fixed w-full top-0 left-0 z-50'>
+    <Navbar className='border-b-[1px] border-gray-300 rounded-t-none bg-gray-600 fixed w-full top-0 left-0 z-50'>
       <Navbar.Brand as={Link} to='/'>
         <img src={logo} className='mr-3 h-9 w-9 rounded-lg' alt='Arvin Logo' />
         <span className='self-center whitespace-nowrap text-xl font-serif font-semibold dark:text-white'>
@@ -79,7 +79,7 @@ export default function Header() {
       </Button>
       <div className='flex gap-2 md:order-3'>
         <Button
-          className='w-12 h-10 hidden sm:inline text-xl p-0 focus:ring-gray-300'
+          className='w-12 h-10 inline text-xl p-0 focus:ring-gray-300'
           pill
           color='light'
           onClick={() => {

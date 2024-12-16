@@ -14,7 +14,7 @@ export default function FooterComp() {
   return (
     <Footer
       container
-      className='border-t-[1px] border-gray-300 bg-gray-500  dark:border-gray-700 px-6 py-3 rounded-t-none'
+      className='border-t-[1px] border-gray-300 bg-gray-600  dark:border-gray-700 px-6 py-3 rounded-t-none'
     >
       <div className='w-full text-center'>
         <div className='w-full justify-between sm:flex sm:items-center sm:justify-between px-10'>
