@@ -1,20 +1,30 @@
 import { Button, Navbar, TextInput, Dropdown, Avatar } from 'flowbite-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { CgDarkMode, CgSun } from 'react-icons/cg';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleTheme } from '../redux/theme/themeSlice';
 import { signOutSuccess } from '../redux/user/userSlice';
 import logo from '../assets/arvin_logo.png';
+import { useEffect, useState } from 'react';
 
 export default function Header() {
   const path = useLocation().pathname;
+  const location = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
   const { theme } = useSelector((state) => state.theme);
+  const [searchTerm, setSearchTerm] = useState('');
   const activeNav = 'text-gray-800 dark:text-gray-600';
   const inActiveNav =
     'text-gray-400 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-600';
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const searchTermFromUrl = urlParams.get('searchTerm');
+    if (searchTermFromUrl) setSearchTerm(searchTermFromUrl);
+  }, [location.search]);
 
   const handleSignOut = async () => {
     try {
@@ -31,23 +41,40 @@ export default function Header() {
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set('searchTerm', searchTerm);
+    const searchQuery = urlParams.toString();
+    navigate(`/search?${searchQuery}`);
+  };
+
   return (
-    <Navbar className='border-b-[1px] border-gray-300 rounded-t-none bg-gray-100 dark:border-gray-700 fixed w-full top-0 left-0 z-50'>
+    <Navbar className='border-b-[1px] border-gray-300 rounded-t-none bg-gray-500 dark:border-gray-700 fixed w-full top-0 left-0 z-50'>
       <Navbar.Brand as={Link} to='/'>
         <img src={logo} className='mr-3 h-9 w-9 rounded-lg' alt='Arvin Logo' />
         <span className='self-center whitespace-nowrap text-xl font-serif font-semibold dark:text-white'>
           Archives
         </span>
       </Navbar.Brand>
-      <form className='lg:order-3'>
+      <form className='lg:order-3' onSubmit={handleSubmit}>
         <TextInput
           type='text'
           placeholder='Search...'
           rightIcon={AiOutlineSearch}
-          className='hidden lg:inline '
+          className='hidden lg:inline bg-gray-400'
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </form>
-      <Button className='w-12 h-10 lg:hidden' color='gray' pill>
+      <Button
+        className='w-12 h-10 lg:hidden'
+        color='gray'
+        onClick={() => {
+          navigate('/search');
+        }}
+        pill
+      >
         <AiOutlineSearch />
       </Button>
       <div className='flex gap-2 md:order-3'>

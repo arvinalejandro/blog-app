@@ -27,6 +27,7 @@ export default function UpdatePost() {
   useEffect(() => {
     try {
       const fetchPost = async () => {
+        //console.log('here');
         const res = await fetch(`/api/post/getposts?postId=${postId}`);
         const data = await res.json();
         if (!res.ok) {
@@ -164,14 +165,14 @@ export default function UpdatePost() {
           <img
             src={formData.image}
             alt='upload'
-            className='w-full h-72 object-cover'
+            className='w-full h-72 object-cover aspect-auto'
           />
         )}
         <ReactQuill
           theme='snow'
           placeholder='Write something...'
           className='h-72 mb-12 text-gray-700 dark:text-gray-100'
-          value={formData.content.replace(/<\/?span[^>]*>/g, '')}
+          value={formData.content}
           required
           onChange={(value) => {
             setFormData({ ...formData, content: value });

@@ -14,7 +14,7 @@ export default function FooterComp() {
   return (
     <Footer
       container
-      className='border-t-[1px] border-gray-300 bg-gray-100 dark:border-gray-700 px-6 py-3 rounded-t-none'
+      className='border-t-[1px] border-gray-300 bg-gray-500  dark:border-gray-700 px-6 py-3 rounded-t-none'
     >
       <div className='w-full text-center'>
         <div className='w-full justify-between sm:flex sm:items-center sm:justify-between px-10'>
@@ -28,12 +28,12 @@ export default function FooterComp() {
                 className='mr-4 h-9 w-9  rounded-lg'
                 alt='Arvin Logo'
               />
-              <span className='self-center whitespace-nowrap text-xl font-serif font-semibold dark:text-white'>
+              <span className='self-center whitespace-nowrap text-xl font-serif font-semibold text-gray-800 dark:text-gray-400'>
                 Archives
               </span>
             </Link>
           </div>
-          <Footer.LinkGroup className='dark:text-gray-400'>
+          <Footer.LinkGroup className='text-gray-800 dark:text-gray-400 font-semibold'>
             <Footer.Link href='#'>About</Footer.Link>
             <Footer.Link href='#'>Privacy Policy</Footer.Link>
             <Footer.Link href='#'>Licensing</Footer.Link>
@@ -47,12 +47,33 @@ export default function FooterComp() {
             href='#'
             by='Arvin Alejandro Archives'
             year={fullYear}
+            className='text-gray-800'
           />
-          <Footer.Icon href='#' icon={BsFacebook} />
-          <Footer.Icon href='#' icon={BsInstagram} />
-          <Footer.Icon href='#' icon={BsTwitterX} />
-          <Footer.Icon href='#' icon={BsGithub} />
-          <Footer.Icon href='#' icon={BsLinkedin} />
+          <Footer.Icon
+            href='#'
+            icon={BsFacebook}
+            className='text-gray-800 dark:text-gray-400'
+          />
+          <Footer.Icon
+            href='#'
+            icon={BsInstagram}
+            className='text-gray-800 dark:text-gray-400'
+          />
+          <Footer.Icon
+            href='#'
+            icon={BsTwitterX}
+            className='text-gray-800 dark:text-gray-400'
+          />
+          <Footer.Icon
+            href='#'
+            icon={BsGithub}
+            className='text-gray-800 dark:text-gray-400'
+          />
+          <Footer.Icon
+            href='#'
+            icon={BsLinkedin}
+            className='text-gray-800 dark:text-gray-400'
+          />
         </div>
       </div>
     </Footer>
